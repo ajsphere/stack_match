@@ -13,3 +13,6 @@ st.write(
 )
 
 st.info("Game is coming soon 🚀")
+
+for card in cards:
+    st.write(card)
