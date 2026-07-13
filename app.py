@@ -13,5 +13,3 @@ st.write(
 )
 
 st.info("Game is coming soon 🚀")
-
-st.write(cards)
