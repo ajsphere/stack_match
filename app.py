@@ -1,4 +1,5 @@
 import streamlit as st
+from cards import cards
 
 st.set_page_config(
     page_title="StackMatch",
@@ -8,7 +9,9 @@ st.set_page_config(
 st.title("🧠 StackMatch")
 
 st.write(
-    "A memory game . Match programming technologies!"
+    "A memory game for developers. Match programming technologies!"
 )
 
 st.info("Game is coming soon 🚀")
+
+st.write(cards)
