@@ -15,4 +15,7 @@ st.write(
 st.info("Game is coming soon 🚀")
 
 for card in cards:
-    st.write(card)
+    emoji, name = card
+
+    st.write(emoji)
+    st.write(name)
