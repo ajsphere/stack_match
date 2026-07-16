@@ -8,6 +8,16 @@ from cards import cards
 st.title("🧠 Stack Match")
 
 
+if st.button("🔄 Restart Game"):
+
+    st.session_state.game_cards = cards.copy()
+    random.shuffle(st.session_state.game_cards)
+
+    st.session_state.flipped_cards = []
+    st.session_state.matched_cards = []
+    st.session_state.attempts = 0
+
+    st.rerun()
 if "game_cards" not in st.session_state:
     st.session_state.game_cards = cards.copy()
     random.shuffle(st.session_state.game_cards)
