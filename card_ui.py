@@ -1,23 +1,28 @@
 import streamlit as st
 
 
-def show_card(value, index):
+def show_card(value, index, hidden=False):
+
+    if hidden:
+        content = "🂠"
+    else:
+        content = value
 
     st.markdown(
         f"""
         <div style="
-            height:90px;
-            width:90px;
-            background:#ffffff;
-            border-radius:15px;
-            border:2px solid #dddddd;
+            height:100px;
+            width:100px;
+            background:#f8f9fa;
+            border-radius:18px;
+            border:2px solid #cccccc;
             display:flex;
             justify-content:center;
             align-items:center;
-            font-size:45px;
-            margin:10px;
+            font-size:50px;
+            margin:10px auto;
         ">
-            {value}
+            {content}
         </div>
         """,
         unsafe_allow_html=True

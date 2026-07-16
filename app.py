@@ -12,39 +12,7 @@ st.set_page_config(
 )
 
 
-st.markdown(
-    """
-    <style>
-    .card {
-        background-color: #ffffff;
-        border-radius: 15px;
-        height: 90px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 45px;
-        border: 2px solid #dddddd;
-        margin: 8px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
 st.title("🧠 Stack Match")
-
-
-if st.button("🔄 Restart Game"):
-
-    st.session_state.game_cards = cards.copy()
-    random.shuffle(st.session_state.game_cards)
-
-    st.session_state.flipped_cards = []
-    st.session_state.matched_cards = []
-    st.session_state.attempts = 0
-
-    st.rerun()
 
 
 if "game_cards" not in st.session_state:
@@ -64,10 +32,23 @@ if "attempts" not in st.session_state:
     st.session_state.attempts = 0
 
 
+if st.button("🔄 Restart Game"):
+
+    st.session_state.game_cards = cards.copy()
+    random.shuffle(st.session_state.game_cards)
+
+    st.session_state.flipped_cards = []
+    st.session_state.matched_cards = []
+    st.session_state.attempts = 0
+
+    st.rerun()
+
+
 game_cards = st.session_state.game_cards
 
 
 st.write(f"🎯 Attempts: {st.session_state.attempts}")
+
 st.write(
     f"🏆 Matches: {len(st.session_state.matched_cards)//2}/{len(game_cards)//2}"
 )
@@ -75,11 +56,15 @@ st.write(
 
 columns = st.columns(4)
 
+
 for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
 
-        if index in st.session_state.matched_cards or index in st.session_state.flipped_cards:
+        if (
+            index in st.session_state.matched_cards
+            or index in st.session_state.flipped_cards
+        ):
 
             show_card(
                 card["value"],
@@ -88,14 +73,21 @@ for index, card in enumerate(game_cards):
 
         else:
 
+            show_card(
+                "",
+                index,
+                hidden=True
+            )
+
             if st.button(
-                "🂠",
-                key=f"closed_{index}"
+                "Hap",
+                key=f"card_{index}"
             ):
 
                 st.session_state.flipped_cards.append(index)
 
                 st.rerun()
+
 
 
 if len(st.session_state.flipped_cards) == 2:
@@ -127,6 +119,7 @@ if len(st.session_state.flipped_cards) == 2:
 
 
     st.rerun()
+
 
 
 if len(st.session_state.matched_cards) == len(game_cards):
