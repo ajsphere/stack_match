@@ -50,3 +50,23 @@ for index, card in enumerate(game_cards):
 
             if st.button("🂠", key=index):
                 st.session_state.flipped_cards.append(index)
+
+
+if len(st.session_state.flipped_cards) == 2:
+
+    first = st.session_state.flipped_cards[0]
+    second = st.session_state.flipped_cards[1]
+
+    if game_cards[first]["pair"] == game_cards[second]["pair"]:
+
+        st.success("🎉 Match!")
+
+        st.session_state.matched_cards.extend(
+            [first, second]
+        )
+
+        st.session_state.flipped_cards = []
+
+    else:
+
+        st.error("❌ Try again")
