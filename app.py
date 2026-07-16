@@ -14,8 +14,11 @@ st.write("A memory game for developers.")
 
 st.info("🚀 Version 1.0")
 
-game_cards = cards.copy()
-random.shuffle(game_cards)
+if "game_cards" not in st.session_state:
+    st.session_state.game_cards = cards.copy()
+    random.shuffle(st.session_state.game_cards)
+
+game_cards = st.session_state.game_cards
 
 if "flipped_cards" not in st.session_state:
     st.session_state.flipped_cards = []
