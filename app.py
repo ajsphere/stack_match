@@ -22,8 +22,8 @@ if "game_cards" not in st.session_state:
 
 game_cards = st.session_state.game_cards
 
-if "flipped_cards" not in st.session_state:
-    st.session_state.flipped_cards = []
+if "wrong_match" not in st.session_state:
+    st.session_state.wrong_match = False
 
 if "matched_cards" not in st.session_state:
     st.session_state.matched_cards = []
@@ -70,9 +70,5 @@ if len(st.session_state.flipped_cards) == 2:
         st.session_state.flipped_cards = []
 
 else:
-
     st.error("❌ Try again")
-
-    time.sleep(1)
-
-    st.session_state.flipped_cards = []
+    st.session_state.wrong_match = True
