@@ -3,6 +3,7 @@ import time
 import streamlit as st
 
 from cards import cards
+from card_ui import show_card
 
 
 st.set_page_config(
