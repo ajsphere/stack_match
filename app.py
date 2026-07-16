@@ -76,5 +76,3 @@ else:
     time.sleep(1)
 
     st.session_state.flipped_cards = []
-
-    st.rerun()
