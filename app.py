@@ -4,17 +4,9 @@ import streamlit as st
 
 from cards import cards
 
-st.set_page_config(
-    page_title="StackMatch",
-    page_icon="🧠",
-    layout="centered"
-)
 
-st.title("🧠 StackMatch")
+st.title("🧠 Stack Match")
 
-st.write("A memory game for developers.")
-
-st.info("🚀 Version 1.0")
 
 if "game_cards" not in st.session_state:
     st.session_state.game_cards = cards.copy()
@@ -22,13 +14,25 @@ if "game_cards" not in st.session_state:
 
 game_cards = st.session_state.game_cards
 
-if "wrong_match" not in st.session_state:
-    st.session_state.wrong_match = False
+
+if "flipped_cards" not in st.session_state:
+    st.session_state.flipped_cards = []
 
 if "matched_cards" not in st.session_state:
     st.session_state.matched_cards = []
 
+if "attempts" not in st.session_state:
+    st.session_state.attempts = 0
+
+
+st.write(f"🎯 Attempts: {st.session_state.attempts}")
+st.write(
+    f"🏆 Matches: {len(st.session_state.matched_cards)//2}/{len(cards)//2}"
+)
+
+
 columns = st.columns(4)
+
 
 for index, card in enumerate(game_cards):
 
@@ -38,26 +42,34 @@ for index, card in enumerate(game_cards):
 
             st.button(
                 card["value"],
-                key=index
+                key=f"matched_{index}"
             )
 
         elif index in st.session_state.flipped_cards:
 
             st.button(
                 card["value"],
-                key=index
+                key=f"flipped_{index}"
             )
 
         else:
 
-            if st.button("🂠", key=index):
-                st.session_state.flipped_cards.append(index)
+            if len(st.session_state.flipped_cards) < 2:
+
+                if st.button("🂠", key=f"card_{index}"):
+
+                    st.session_state.flipped_cards.append(index)
+
+                    st.rerun()
 
 
 if len(st.session_state.flipped_cards) == 2:
 
+    st.session_state.attempts += 1
+
     first = st.session_state.flipped_cards[0]
     second = st.session_state.flipped_cards[1]
+
 
     if game_cards[first]["pair"] == game_cards[second]["pair"]:
 
@@ -69,6 +81,20 @@ if len(st.session_state.flipped_cards) == 2:
 
         st.session_state.flipped_cards = []
 
-else:
-    st.error("❌ Try again")
-    st.session_state.wrong_match = True
+        st.rerun()
+
+    else:
+
+        st.error("❌ Try again")
+
+        time.sleep(1)
+
+        st.session_state.flipped_cards = []
+
+        st.rerun()
+
+
+if len(st.session_state.matched_cards) == len(game_cards):
+
+    st.balloons()
+    st.success("🏆 You Win!")
