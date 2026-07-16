@@ -1,89 +1,55 @@
 cards = [
     {
-        "type": "emoji",
         "value": "🐍",
         "pair": "Python"
     },
     {
-        "type": "text",
-        "value": "Python",
+        "value": "🐍",
         "pair": "Python"
     },
 
     {
-        "type": "emoji",
         "value": "☕",
         "pair": "Java"
     },
     {
-        "type": "text",
-        "value": "Java",
+        "value": "☕",
         "pair": "Java"
     },
 
     {
-        "type": "emoji",
         "value": "🐘",
         "pair": "PostgreSQL"
     },
     {
-        "type": "text",
-        "value": "PostgreSQL",
+        "value": "🐘",
         "pair": "PostgreSQL"
     },
 
     {
-        "type": "emoji",
         "value": "🐳",
         "pair": "Docker"
     },
     {
-        "type": "text",
-        "value": "Docker",
+        "value": "🐳",
         "pair": "Docker"
     },
 
     {
-        "type": "emoji",
         "value": "🌿",
         "pair": "Git"
     },
     {
-        "type": "text",
-        "value": "Git",
+        "value": "🌿",
         "pair": "Git"
     },
 
     {
-        "type": "emoji",
         "value": "⚛️",
         "pair": "React"
     },
     {
-        "type": "text",
-        "value": "React",
+        "value": "⚛️",
         "pair": "React"
-    },
-
-    {
-        "type": "emoji",
-        "value": "🐼",
-        "pair": "Pandas"
-    },
-    {
-        "type": "text",
-        "value": "Pandas",
-        "pair": "Pandas"
-    },
-
-    {
-        "type": "emoji",
-        "value": "📊",
-        "pair": "SQL"
-    },
-    {
-        "type": "text",
-        "value": "SQL",
-        "pair": "SQL"
     }
 ]
