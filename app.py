@@ -25,4 +25,14 @@ columns = st.columns(4)
 for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
-        st.write(card["value"])
+
+        if index in st.session_state.flipped_cards:
+            st.button(
+                card["value"],
+                key=index
+            )
+        else:
+            st.button(
+                "🂠",
+                key=index
+            )
