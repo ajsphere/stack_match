@@ -23,6 +23,9 @@ game_cards = st.session_state.game_cards
 if "flipped_cards" not in st.session_state:
     st.session_state.flipped_cards = []
 
+if "matched_cards" not in st.session_state:
+    st.session_state.matched_cards = []
+    
 columns = st.columns(4)
 
 for index, card in enumerate(game_cards):
