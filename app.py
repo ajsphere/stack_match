@@ -54,7 +54,7 @@ st.write(
 )
 
 
-columns = st.columns(4, gap="medium")
+columns = st.columns(4)
 
 
 for index, card in enumerate(game_cards):

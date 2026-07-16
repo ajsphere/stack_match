@@ -10,10 +10,11 @@ def show_card(value, index, hidden=False):
         content = value
         background = "#ffffff"
 
+
     st.markdown(
         f"""
         <div style="
-            height:100px;
+            height:120px;
             width:100px;
             background:{background};
             border-radius:20px;
@@ -22,9 +23,8 @@ def show_card(value, index, hidden=False):
             justify-content:center;
             align-items:center;
             font-size:45px;
-            margin:5px;
-            box-shadow:0px 4px 8px rgba(0,0,0,0.15);
-            overflow:hidden;
+            margin:10px;
+            box-shadow:0 4px 8px rgba(0,0,0,0.15);
         ">
             {content}
         </div>
