@@ -75,16 +75,15 @@ st.write(
 
 columns = st.columns(4)
 
-
 for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
 
         if index in st.session_state.matched_cards or index in st.session_state.flipped_cards:
 
-            st.button(
+            show_card(
                 card["value"],
-                key=f"open_{index}"
+                index
             )
 
         else:
