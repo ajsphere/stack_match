@@ -86,8 +86,6 @@ for index, card in enumerate(game_cards):
 
                 st.session_state.flipped_cards.append(index)
 
-                st.rerun()
-
 
 
 if len(st.session_state.flipped_cards) == 2:
