@@ -5,6 +5,32 @@ import streamlit as st
 from cards import cards
 
 
+st.set_page_config(
+    page_title="Stack Match",
+    page_icon="🧠"
+)
+
+
+st.markdown(
+    """
+    <style>
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        height: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 45px;
+        border: 2px solid #dddddd;
+        margin: 8px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 st.title("🧠 Stack Match")
 
 
@@ -18,15 +44,20 @@ if st.button("🔄 Restart Game"):
     st.session_state.attempts = 0
 
     st.rerun()
+
+
 if "game_cards" not in st.session_state:
     st.session_state.game_cards = cards.copy()
     random.shuffle(st.session_state.game_cards)
 
+
 if "flipped_cards" not in st.session_state:
     st.session_state.flipped_cards = []
 
+
 if "matched_cards" not in st.session_state:
     st.session_state.matched_cards = []
+
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
@@ -57,7 +88,10 @@ for index, card in enumerate(game_cards):
 
         else:
 
-            if st.button("🂠", key=f"closed_{index}"):
+            if st.button(
+                "🂠",
+                key=f"closed_{index}"
+            ):
 
                 st.session_state.flipped_cards.append(index)
 
@@ -71,6 +105,7 @@ if len(st.session_state.flipped_cards) == 2:
 
     st.session_state.attempts += 1
 
+
     if game_cards[first]["pair"] == game_cards[second]["pair"]:
 
         st.session_state.matched_cards.extend(
@@ -81,6 +116,7 @@ if len(st.session_state.flipped_cards) == 2:
 
         st.success("🎉 Match!")
 
+
     else:
 
         st.error("❌ Try again")
@@ -88,6 +124,7 @@ if len(st.session_state.flipped_cards) == 2:
         time.sleep(1)
 
         st.session_state.flipped_cards = []
+
 
     st.rerun()
 
