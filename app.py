@@ -123,4 +123,4 @@ if len(st.session_state.flipped_cards) == 2:
 if len(st.session_state.matched_cards) == len(game_cards):
 
     st.balloons()
-    st.success("🏆 You Win!")
+    st.success(" Amazing Job! You Found Them All! 🎉")
