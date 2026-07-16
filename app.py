@@ -32,6 +32,10 @@ if "attempts" not in st.session_state:
     st.session_state.attempts = 0
 
 
+if "start_time" not in st.session_state:
+    st.session_state.start_time = time.time()
+
+
 if st.button("🔄 Restart Game"):
 
     st.session_state.game_cards = cards.copy()
@@ -40,6 +44,7 @@ if st.button("🔄 Restart Game"):
     st.session_state.flipped_cards = []
     st.session_state.matched_cards = []
     st.session_state.attempts = 0
+    st.session_state.start_time = time.time()
 
     st.rerun()
 
@@ -86,6 +91,8 @@ for index, card in enumerate(game_cards):
 
                 st.session_state.flipped_cards.append(index)
 
+                st.rerun()
+
 
 
 if len(st.session_state.flipped_cards) == 2:
@@ -122,5 +129,33 @@ if len(st.session_state.flipped_cards) == 2:
 
 if len(st.session_state.matched_cards) == len(game_cards):
 
+    elapsed_time = int(
+        time.time() - st.session_state.start_time
+    )
+
     st.balloons()
-    st.success(" Amazing Job! You Found Them All! 🎉")
+
+    st.success(
+        "🌈 Amazing Job! You Found Them All! 🎉"
+    )
+
+    st.write(
+        f"⏱️ Time: {elapsed_time} seconds"
+    )
+
+    st.write(
+        f"🎯 Attempts: {st.session_state.attempts}"
+    )
+
+
+    if st.button("🔄 Play Again"):
+
+        st.session_state.game_cards = cards.copy()
+        random.shuffle(st.session_state.game_cards)
+
+        st.session_state.flipped_cards = []
+        st.session_state.matched_cards = []
+        st.session_state.attempts = 0
+        st.session_state.start_time = time.time()
+
+        st.rerun()
