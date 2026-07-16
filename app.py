@@ -1,6 +1,6 @@
 import random
+import time
 import streamlit as st
-from cards import cards
 
 st.set_page_config(
     page_title="StackMatch",
@@ -67,6 +67,12 @@ if len(st.session_state.flipped_cards) == 2:
 
         st.session_state.flipped_cards = []
 
-    else:
+else:
 
-        st.error("❌ Try again")
+    st.error("❌ Try again")
+
+    time.sleep(1)
+
+    st.session_state.flipped_cards = []
+
+    st.rerun()
