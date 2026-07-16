@@ -17,6 +17,9 @@ st.info("🚀 Version 1.0")
 game_cards = cards.copy()
 random.shuffle(game_cards)
 
+if "flipped_cards" not in st.session_state:
+    st.session_state.flipped_cards = []
+
 columns = st.columns(4)
 
 for index, card in enumerate(game_cards):
