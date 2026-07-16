@@ -14,8 +14,11 @@ st.write(
 
 st.info("Game is coming soon 🚀")
 
-for card in cards:
+columns = st.columns(4)
+
+for index, card in enumerate(cards):
     emoji, name = card
 
-    st.write(emoji)
-    st.write(name)
+    with columns[index % 4]:
+        st.write(emoji)
+        st.write(name)
