@@ -1,3 +1,4 @@
+import random
 import streamlit as st
 from cards import cards
 
@@ -13,9 +14,12 @@ st.write("A memory game for developers.")
 
 st.info("🚀 Version 1.0")
 
+game_cards = cards.copy()
+random.shuffle(game_cards)
+
 columns = st.columns(4)
 
-for index, card in enumerate(cards):
+for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
         st.write(card["value"])
