@@ -25,31 +25,28 @@ if "flipped_cards" not in st.session_state:
 
 if "matched_cards" not in st.session_state:
     st.session_state.matched_cards = []
-    
+
 columns = st.columns(4)
 
 for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
 
-        if index in st.session_state.flipped_cards:
+        if index in st.session_state.matched_cards:
+
+            st.button(
+                card["value"],
+                key=index
+            )
+
+        elif index in st.session_state.flipped_cards:
+
             st.button(
                 card["value"],
                 key=index
             )
 
         else:
+
             if st.button("🂠", key=index):
                 st.session_state.flipped_cards.append(index)
-
-
-if len(st.session_state.flipped_cards) == 2:
-    
-    first = st.session_state.flipped_cards[0]
-    second = st.session_state.flipped_cards[1]
-
-    if game_cards[first]["pair"] == game_cards[second]["pair"]:
-        st.success("🎉 Match!")
-
-    else:
-        st.error("❌ Try again")
