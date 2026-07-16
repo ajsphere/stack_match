@@ -31,8 +31,7 @@ for index, card in enumerate(game_cards):
                 card["value"],
                 key=index
             )
+
         else:
-            st.button(
-                "🂠",
-                key=index
-            )
+            if st.button("🂠", key=index):
+                st.session_state.flipped_cards.append(index)
