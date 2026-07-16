@@ -80,7 +80,7 @@ for index, card in enumerate(game_cards):
             )
 
             if st.button(
-                "Hap",
+                "🂠",
                 key=f"card_{index}"
             ):
 
