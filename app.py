@@ -7,12 +7,16 @@ from card_ui import show_card
 
 
 st.set_page_config(
-    page_title="Stack Match",
-    page_icon="🧠"
+    page_title="Sweet Match",
+    page_icon="🍭"
 )
 
 
-st.title("🧠 Stack Match")
+st.title("🍭 Sweet Match")
+
+st.caption(
+    "Match all the yummy treats and become the Sweet Match Champion! 🍩🍦🍭"
+)
 
 
 if "game_cards" not in st.session_state:
@@ -55,7 +59,7 @@ game_cards = st.session_state.game_cards
 st.write(f"🎯 Attempts: {st.session_state.attempts}")
 
 st.write(
-    f"🏆 Matches: {len(st.session_state.matched_cards)//2}/{len(game_cards)//2}"
+    f"🍬 Matches: {len(st.session_state.matched_cards)//2}/{len(game_cards)//2}"
 )
 
 
@@ -111,12 +115,12 @@ if len(st.session_state.flipped_cards) == 2:
 
         st.session_state.flipped_cards = []
 
-        st.success("🎉 Match!")
+        st.success("🍭 Sweet Match! 🎉")
 
 
     else:
 
-        st.error("❌ Try again")
+        st.error("😢 Try Again!")
 
         time.sleep(1)
 
@@ -136,7 +140,7 @@ if len(st.session_state.matched_cards) == len(game_cards):
     st.balloons()
 
     st.success(
-        "🌈 Amazing Job! You Found Them All! 🎉"
+        "🍬 Yum! You Found All the Sweet Treats! 🎉"
     )
 
     st.write(
@@ -145,6 +149,10 @@ if len(st.session_state.matched_cards) == len(game_cards):
 
     st.write(
         f"🎯 Attempts: {st.session_state.attempts}"
+    )
+
+    st.write(
+        "🌟 You're a Sweet Match Champion! 🌟"
     )
 
 
