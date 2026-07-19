@@ -12,6 +12,28 @@ st.set_page_config(
 )
 
 
+if "game_started" not in st.session_state:
+    st.session_state.game_started = False
+
+
+if not st.session_state.game_started:
+
+    st.title("🍭 Sweet Match")
+
+    st.write(
+        "Match all the yummy treats and become the Sweet Match Champion! 🍩🍦🍭"
+    )
+
+    if st.button("🎮 Start Game"):
+
+        st.session_state.game_started = True
+        st.session_state.start_time = time.time()
+
+        st.rerun()
+
+    st.stop()
+
+
 st.title("🍭 Sweet Match")
 
 st.caption(
@@ -49,6 +71,7 @@ if st.button("🔄 Restart Game"):
     st.session_state.matched_cards = []
     st.session_state.attempts = 0
     st.session_state.start_time = time.time()
+    st.session_state.game_started = True
 
     st.rerun()
 
@@ -165,5 +188,6 @@ if len(st.session_state.matched_cards) == len(game_cards):
         st.session_state.matched_cards = []
         st.session_state.attempts = 0
         st.session_state.start_time = time.time()
+        st.session_state.game_started = True
 
         st.rerun()
