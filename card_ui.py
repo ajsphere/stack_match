@@ -4,30 +4,53 @@ import streamlit as st
 def show_card(value, index, hidden=False):
 
     if hidden:
-        content = "🂠"
-        background = "#1f4e79"
+
+        clicked = st.button(
+            "🍭",
+            key=f"card_{index}",
+            use_container_width=True
+        )
+
+        st.markdown(
+            """
+            <style>
+            div[data-testid="stButton"] button {
+                height: 90px;
+                font-size: 35px;
+                border-radius: 15px;
+                background-color: #ffd6e7;
+                border: 3px solid #ff8fab;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        return clicked
+
+
     else:
-        content = value
-        background = "#ffffff"
 
+        st.button(
+            value,
+            key=f"open_{index}",
+            disabled=True,
+            use_container_width=True
+        )
 
-    st.markdown(
-        f"""
-        <div style="
-            height:120px;
-            width:100px;
-            background:{background};
-            border-radius:20px;
-            border:2px solid #cccccc;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-size:45px;
-            margin:10px;
-            box-shadow:0 4px 8px rgba(0,0,0,0.15);
-        ">
-            {content}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        st.markdown(
+            """
+            <style>
+            div[data-testid="stButton"] button {
+                height: 90px;
+                font-size: 35px;
+                border-radius: 15px;
+                background-color: #fff0f5;
+                border: 3px solid #ff8fab;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        return False
