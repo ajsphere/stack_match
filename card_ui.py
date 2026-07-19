@@ -7,25 +7,17 @@ def show_card(value, index, hidden=False):
         """
         <style>
 
-        div[data-testid="stButton"] button {
+        div[data-testid="stButton"]:has(button[kind="secondary"]) button {
             height: 130px;
             width: 130px;
             border-radius: 25px;
             font-size: 70px;
-            border: 3px solid #ff8fab;
             background-color: #ffe5ec;
-            transition: 0.3s;
+            border: 3px solid #ff8fab;
         }
 
-
-        div[data-testid="stButton"] button:hover {
-            transform: scale(1.05);
-        }
-
-
-        div[data-testid="stButton"] button p {
+        div[data-testid="stButton"]:has(button[kind="secondary"]) button p {
             font-size: 70px !important;
-            line-height: 1 !important;
         }
 
         </style>

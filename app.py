@@ -78,7 +78,7 @@ if "start_time" not in st.session_state:
 
 # Restart button
 
-if st.button("🔄 Restart Game"):
+if st.button("🔄 Restart Game", key="restart"):
 
     st.session_state.game_cards = cards.copy()
     random.shuffle(st.session_state.game_cards)
