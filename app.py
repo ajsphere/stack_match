@@ -16,8 +16,6 @@ if "game_started" not in st.session_state:
     st.session_state.game_started = False
 
 
-# ---------------- START SCREEN ----------------
-
 if not st.session_state.game_started:
 
     st.title("🍭 Sweet Match")
@@ -37,8 +35,6 @@ if not st.session_state.game_started:
 
 
 
-# ---------------- GAME ----------------
-
 st.title("🍭 Sweet Match")
 
 st.caption(
@@ -46,8 +42,6 @@ st.caption(
 )
 
 
-
-# Initialize cards
 
 if "game_cards" not in st.session_state:
 
@@ -75,8 +69,6 @@ if "start_time" not in st.session_state:
     st.session_state.start_time = time.time()
 
 
-
-# Restart button
 
 if st.button("🔄 Restart Game"):
 
@@ -111,28 +103,31 @@ columns = st.columns(4)
 
 
 
-# ---------------- CARDS ----------------
-
 for index, card in enumerate(game_cards):
 
     with columns[index % 4]:
 
-        is_open = (
-            index in st.session_state.flipped_cards
-            or index in st.session_state.matched_cards
-        )
+        if (
+            index in st.session_state.matched_cards
+            or index in st.session_state.flipped_cards
+        ):
+
+            show_card(
+                card["value"],
+                index
+            )
 
 
-        clicked = show_card(
-            card["value"] if is_open else "",
-            index,
-            hidden=not is_open
-        )
+        else:
+
+            clicked = show_card(
+                "",
+                index,
+                hidden=True
+            )
 
 
-        if clicked:
-
-            if index not in st.session_state.flipped_cards:
+            if clicked:
 
                 st.session_state.flipped_cards.append(index)
 
@@ -140,13 +135,9 @@ for index, card in enumerate(game_cards):
 
 
 
-# ---------------- CHECK MATCH ----------------
-
 if len(st.session_state.flipped_cards) == 2:
 
-
     first = st.session_state.flipped_cards[0]
-
     second = st.session_state.flipped_cards[1]
 
 
@@ -159,7 +150,6 @@ if len(st.session_state.flipped_cards) == 2:
         ==
         game_cards[second]["pair"]
     ):
-
 
         st.session_state.matched_cards.extend(
             [first, second]
@@ -185,11 +175,7 @@ if len(st.session_state.flipped_cards) == 2:
 
 
 
-# ---------------- WIN ----------------
-
-
 if len(st.session_state.matched_cards) == len(game_cards):
-
 
     elapsed_time = int(
         time.time() - st.session_state.start_time
@@ -197,7 +183,6 @@ if len(st.session_state.matched_cards) == len(game_cards):
 
 
     st.balloons()
-
 
 
     st.success(
@@ -223,13 +208,11 @@ if len(st.session_state.matched_cards) == len(game_cards):
 
     if st.button("🔄 Play Again"):
 
-
         st.session_state.game_cards = cards.copy()
 
         random.shuffle(
             st.session_state.game_cards
         )
-
 
         st.session_state.flipped_cards = []
 
@@ -238,6 +221,5 @@ if len(st.session_state.matched_cards) == len(game_cards):
         st.session_state.attempts = 0
 
         st.session_state.start_time = time.time()
-
 
         st.rerun()

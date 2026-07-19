@@ -13,21 +13,45 @@ def show_card(value, index, hidden=False):
 
     st.markdown(
         f"""
-        <div style="
+        <style>
+        div[data-testid="stButton"] button {{
             height:120px;
             width:100px;
             background:{background};
             border-radius:20px;
             border:2px solid #cccccc;
-            display:flex;
-            justify-content:center;
-            align-items:center;
             font-size:45px;
             margin:10px;
             box-shadow:0 4px 8px rgba(0,0,0,0.15);
-        ">
-            {content}
-        </div>
+        }}
+
+        div[data-testid="stButton"] button p {{
+            font-size:45px !important;
+        }}
+        </style>
         """,
         unsafe_allow_html=True
     )
+
+
+    if hidden:
+
+        clicked = st.button(
+            content,
+            key=f"card_{index}",
+            use_container_width=False
+        )
+
+        return clicked
+
+
+    else:
+
+        st.button(
+            content,
+            key=f"open_{index}",
+            disabled=True,
+            use_container_width=False
+        )
+
+        return False
