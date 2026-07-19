@@ -6,18 +6,20 @@ def show_card(value, index, hidden=False):
     st.markdown(
         """
         <style>
-
-        div[data-testid="stButton"]:has(button[kind="secondary"]) button {
-            height: 130px;
-            width: 130px;
-            border-radius: 25px;
-            font-size: 70px;
-            background-color: #ffe5ec;
-            border: 3px solid #ff8fab;
+        
+        .card-button button {
+            height: 130px !important;
+            width: 130px !important;
+            border-radius: 25px !important;
+            background-color: #ffe5ec !important;
+            border: 3px solid #ff8fab !important;
+            font-size: 65px !important;
+            padding: 0 !important;
         }
 
-        div[data-testid="stButton"]:has(button[kind="secondary"]) button p {
-            font-size: 70px !important;
+        .card-button button p {
+            font-size: 65px !important;
+            line-height: 1 !important;
         }
 
         </style>
@@ -28,22 +30,26 @@ def show_card(value, index, hidden=False):
 
     if hidden:
 
-        clicked = st.button(
-            "🍬",
-            key=f"card_{index}",
-            use_container_width=True
-        )
+        with st.container():
+
+            clicked = st.button(
+                "🍬",
+                key=f"card_{index}",
+                use_container_width=True
+            )
 
         return clicked
 
 
     else:
 
-        st.button(
-            value,
-            key=f"open_{index}",
-            disabled=True,
-            use_container_width=True
-        )
+        with st.container():
+
+            st.button(
+                value,
+                key=f"open_{index}",
+                disabled=True,
+                use_container_width=True
+            )
 
         return False
