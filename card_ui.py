@@ -7,23 +7,7 @@ def show_card(value, index, hidden=False):
 
         clicked = st.button(
             "🍭",
-            key=f"card_{index}",
-            use_container_width=True
-        )
-
-        st.markdown(
-            """
-            <style>
-            div[data-testid="stButton"] button {
-                height: 90px;
-                font-size: 35px;
-                border-radius: 15px;
-                background-color: #ffd6e7;
-                border: 3px solid #ff8fab;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
+            key=f"card_{index}"
         )
 
         return clicked
@@ -31,24 +15,22 @@ def show_card(value, index, hidden=False):
 
     else:
 
-        st.button(
-            value,
-            key=f"open_{index}",
-            disabled=True,
-            use_container_width=True
-        )
-
         st.markdown(
-            """
-            <style>
-            div[data-testid="stButton"] button {
-                height: 90px;
-                font-size: 35px;
-                border-radius: 15px;
-                background-color: #fff0f5;
-                border: 3px solid #ff8fab;
-            }
-            </style>
+            f"""
+            <div style="
+                height:90px;
+                width:90px;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background-color:#fff0f5;
+                border:3px solid #ff8fab;
+                border-radius:15px;
+                font-size:35px;
+                margin:auto;
+            ">
+                {value}
+            </div>
             """,
             unsafe_allow_html=True
         )
