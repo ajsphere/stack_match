@@ -11,35 +11,32 @@ def show_card(value, index, hidden=False):
         background = "#ffffff"
 
 
-    st.markdown(
-        f"""
-        <style>
-        div[data-testid="stButton"] button {{
-            height:120px;
-            width:100px;
-            background:{background};
-            border-radius:20px;
-            border:2px solid #cccccc;
-            font-size:45px;
-            margin:10px;
-            box-shadow:0 4px 8px rgba(0,0,0,0.15);
-        }}
-
-        div[data-testid="stButton"] button p {{
-            font-size:45px !important;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-
     if hidden:
 
         clicked = st.button(
             content,
-            key=f"card_{index}",
-            use_container_width=False
+            key=f"card_{index}"
+        )
+
+        st.markdown(
+            f"""
+            <style>
+            button[kind="secondary"] {{
+                height:120px;
+                width:100px;
+                border-radius:20px;
+                border:2px solid #cccccc;
+                background:{background};
+                font-size:45px;
+                box-shadow:0 4px 8px rgba(0,0,0,0.15);
+            }}
+
+            button[kind="secondary"] p {{
+                font-size:45px !important;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
         )
 
         return clicked
@@ -47,11 +44,25 @@ def show_card(value, index, hidden=False):
 
     else:
 
-        st.button(
-            content,
-            key=f"open_{index}",
-            disabled=True,
-            use_container_width=False
+        st.markdown(
+            f"""
+            <div style="
+                height:120px;
+                width:100px;
+                background:{background};
+                border-radius:20px;
+                border:2px solid #cccccc;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                font-size:45px;
+                margin:10px;
+                box-shadow:0 4px 8px rgba(0,0,0,0.15);
+            ">
+                {content}
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
         return False
